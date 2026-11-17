@@ -250,8 +250,7 @@ If you find our work helpful, we would appreciate it if you could cite our paper
   title  = {Hierarchical Diffusion Transformer for End-to-End Image Generation},
   author = {Wu, Xiaoyu and Wang, Yifei and Guo, Weihang and Wei, Chen and Kavraki, Lydia E. and
             Mireshghallah, Niloofar and Wu, Zhiwei Steven},
-  year   = {2026},
-  url    = {https://github.com/Nicholas0228/HiT-Released}
+  year   = {2026}
 }
 ```
 
