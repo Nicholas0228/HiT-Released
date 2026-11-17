@@ -241,6 +241,20 @@ pinned [MiniT2I PyTorch model](third_party/minit2i_torch/SOURCE.json) for text-t
 | [Recipe](docs/RECIPE.md), [Text-to-image](docs/T2I.md) | Model sizes, training, recovery, calibration |
 | [Fine-tuning](docs/FINETUNING.md) | SFT40k training and the BLIP3o / DALL-E 3 / ShareGPT-4o mixture |
 
+## Citation
+
+If you find our work helpful, we would appreciate it if you could cite our paper:
+
+```bibtex
+@misc{wu2026hit,
+  title  = {Hierarchical Diffusion Transformer for End-to-End Image Generation},
+  author = {Wu, Xiaoyu and Wang, Yifei and Guo, Weihang and Wei, Chen and Kavraki, Lydia E. and
+            Mireshghallah, Niloofar and Wu, Zhiwei Steven},
+  year   = {2026},
+  url    = {https://github.com/Nicholas0228/HiT-Released}
+}
+```
+
 ## License
 
 MIT for this code and the [checkpoints](https://huggingface.co/Nicholas0228/HiT). The frozen text-to-image inputs
