@@ -8,7 +8,7 @@
 <h1 align="center">HiT: Hierarchical Diffusion Transformer<br>for End-to-End Image Generation</h1>
 
 <p align="center">
-Xiaoyu Wu¹ · Yifei Wang² · Weihang Guo² · Chen Wei² · Lydia E. Kavraki² · Niloofar Mireshghallah¹ · Steven Wu¹<br>
+Xiaoyu Wu¹ · Yifei Wang² · Weihang Guo² · Chen Wei² · Lydia E. Kavraki² · Niloofar Mireshghallah¹ · Zhiwei Steven Wu¹<br>
 ¹Carnegie Mellon University · ²Rice University
 </p>
 
