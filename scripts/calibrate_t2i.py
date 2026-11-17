@@ -50,7 +50,7 @@ def choose_threshold(scores, populations, ratio, precision):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('--model', default='configs/t2i/models/hit_b16.json')
+    p.add_argument('--model', default='configs/t2i/models/hit_b16_d27.json')
     p.add_argument('--runtime', default='configs/t2i/runtime/cuda.json')
     p.add_argument('--inputs', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True, help='New directory for the report and calibrated model config')

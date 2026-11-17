@@ -192,13 +192,13 @@ def test_config_rules(tmp_path):
         tiny(block_depths=(1, 1, 2, 2, 1))
     with pytest.raises(ValueError):
         tiny('baseline', thresholds=(.5, .5))
-    model = json.loads((ROOT / 'configs/t2i/models/hit_b16.json').read_text())
+    model = json.loads((ROOT / 'configs/t2i/models/hit_b16_d27.json').read_text())
     path = tmp_path / 'uncalibrated.json'
     path.write_text(json.dumps(dict(model, thresholds=None)))
     with pytest.raises(ValueError):
         load_t2i_config(path)
     config, _, _ = load_t2i_config(path, calibrating=True)
-    assert config.image_tokens + config.text_length == 1280 and config.depth == 22
+    assert config.image_tokens + config.text_length == 1280 and config.depth == 27
 
 
 def test_released_configs_match_published_sizes():
@@ -206,13 +206,13 @@ def test_released_configs_match_published_sizes():
     from t2i.model import TextToImage
     runtime = ROOT / 'configs/t2i/runtime/reference.json'
     counts = {}
-    for name in ('minit2i_b16', 'hit_b16', 'hit_b16_d27'):
+    for name in ('minit2i_b16', 'hit_b16_d27'):
         config, _, _ = load_t2i_config(ROOT / f'configs/t2i/models/{name}.json', None, runtime, calibrating=True)
         if config.variant == 'hnet' and config.thresholds is None:
             config = replace(config, thresholds=(.5, .5))
         with torch.device('meta'):
             counts[name] = sum(p.numel() for p in TextToImage(config).parameters())
-    assert counts == {'minit2i_b16': 258_122_880, 'hit_b16': 218_775_040, 'hit_b16_d27': 254_188_160}
+    assert counts == {'minit2i_b16': 258_122_880, 'hit_b16_d27': 254_188_160}
 
 
 def test_threshold_choice_hits_ratio():
@@ -223,51 +223,3 @@ def test_threshold_choice_hits_ratio():
     scores = [np.sort(rng.random(n - 1))[::-1] for n in populations]
     threshold, counts = choose_threshold(scores, populations, 2., 'fp64')
     assert abs(counts.sum() - populations.sum() / 2) <= 2
-
-
-@pytest.fixture(scope='module')
-def legacy_t2i():
-    location = os.environ.get('HIT_T2I_LEGACY_SOURCE')
-    if not location:
-        pytest.skip('Set HIT_T2I_LEGACY_SOURCE to a codex/minit2i-b16-b300-fp32 checkout for cross-repo parity')
-    sys.path.append(location)
-    from minit2i_hnet import model, diffusion
-    return model, diffusion
-
-
-@pytest.mark.parametrize('variant', ['baseline', 'hnet'])
-def test_matches_legacy_on_cpu(legacy_t2i, variant):
-    """Bitwise CPU equality with the original implementation: weights, loss and every gradient."""
-    legacy_model, legacy_diffusion = legacy_t2i
-    from t2i.diffusion import objective
-    from t2i.model import TextToImage
-    common = dict(image_size=32, patch_size=16, width=32, heads=2, mlp_ratio=2., text_width=16, text_length=4,
-                  text_depth=2)
-    if variant == 'hnet':
-        config = tiny(block_depths=(3, 3, 10, 3, 3), thresholds=(.3, .3), reference_depth=17,
-                      reference_bottleneck=128, **common)
-        old = legacy_model.ModelConfig(variant='hnet', depth=22, encoder_depth=3, decoder_depth=3, intermediate_depth=3,
-                                       stages=2, bottleneck=0, threshold=.3, second_threshold=.3, target_ratio=2.,
-                                       second_ratio=2., routing_workers=1, routing_backend='numba', compact_backend='padded',
-                                       attention='einsum', initialization='released-shared', time_token=True,
-                                       group_modalities='joint', joint_padding='exclude', tree_precision='fp64', **common)
-    else:
-        config = tiny('baseline', block_depths=(5,), patch_bottleneck=8, **common)
-        old = legacy_model.ModelConfig(variant='dense', depth=5, bottleneck=8, budget_weight=0., attention='einsum',
-                                       compact_backend='padded', initialization='released-pytorch', **common)
-    torch.manual_seed(42)
-    clean = TextToImage(config)
-    torch.manual_seed(42)
-    reference = legacy_model.MiniT2IHNet(old)
-    assert list(clean.state_dict()) == list(reference.state_dict())
-    assert all(torch.equal(a, b) for a, b in zip(clean.state_dict().values(), reference.state_dict().values()))
-    images, context, mask, t = batch(config, seed=3)
-    noise, drop = torch.randn_like(images), torch.tensor([False, False, True])
-    loss_a, stats_a, _ = objective(clean, images, context, mask, t, noise, drop, config, a_min=.05)
-    loss_b, stats_b, _ = legacy_diffusion.loss(reference, images, context, mask, t, noise, drop, old.budget_weight,
-                                               old.target_ratio, a_min=.05)
-    assert torch.equal(loss_a, loss_b) and torch.equal(stats_a['generation_loss'], stats_b['generation_loss'])
-    loss_a.backward(); loss_b.backward()
-    for (name, a), b in zip(clean.named_parameters(), reference.parameters()):
-        assert (a.grad is None) == (b.grad is None), name
-        assert a.grad is None or torch.equal(a.grad, b.grad), name

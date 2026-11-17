@@ -55,7 +55,7 @@ def evaluations_due(recipe, update):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--model', default='configs/t2i/models/hit_b16.json')
+    p.add_argument('--model', default='configs/t2i/models/hit_b16_d27.json')
     p.add_argument('--training', default='configs/t2i/training/cc12m_250k.json')
     p.add_argument('--runtime', default='configs/t2i/runtime/cuda.json')
     p.add_argument('--inputs', type=Path, required=True, help='inputs.json written by scripts/fetch_t2i_inputs.py')
