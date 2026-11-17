@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "synthetic": true,
+  "world_size": 2,
+  "global_batch": 4,
+  "scope": "Actual main_t2i.py fresh SFT, 2-update stop/resume versus 4 uninterrupted updates; tiny model and data",
+  "cudnn_deterministic": true,
+  "exact": [
+    "both rank RNG states",
+    "data and global cursors"
+  ],
+  "numeric_comparison": {
+    "max_absolute": 3.129243850708008e-07,
+    "different_tensors": 48,
+    "rtol": 0.01,
+    "atol": 1e-05
+  },
+  "progress": {
+    "epoch": 0,
+    "update_in_epoch": 250004,
+    "global_step": 250004,
+    "images_seen": 1000016,
+    "training_seconds": 2.022170413751155,
+    "phase_update": 4,
+    "phase_next_position": 16
+  }
+}
