@@ -1,0 +1,9 @@
+{
+  "description": "Plain classifier-free guidance 2.9, JiT's sampler.",
+  "steps": 50,
+  "guidance": 2.9,
+  "interval": [
+    0.1,
+    1.0
+  ]
+}

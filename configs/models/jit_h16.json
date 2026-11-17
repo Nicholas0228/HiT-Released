@@ -1,0 +1,15 @@
+{
+  "variant": "baseline",
+  "image_size": 256,
+  "patch_size": 16,
+  "width": 1280,
+  "heads": 16,
+  "classes": 1000,
+  "block_depths": [
+    32
+  ],
+  "in_context_len": 32,
+  "in_context_start": 10,
+  "patch_bottleneck": 256,
+  "proj_dropout": 0.2
+}

@@ -1,0 +1,37 @@
+{
+  "variant": "hnet",
+  "image_size": 512,
+  "patch_size": 16,
+  "width": 768,
+  "heads": 12,
+  "mlp_ratio": 2.6667,
+  "text_width": 1024,
+  "text_length": 256,
+  "text_depth": 2,
+  "block_depths": [
+    3,
+    3,
+    15,
+    3,
+    3
+  ],
+  "patch_bottleneck": 0,
+  "thresholds": [
+    0.27459803223609924,
+    0.24442464113235474
+  ],
+  "ratios": [
+    2.0,
+    2.0
+  ],
+  "reader_temperature": 0.05,
+  "budget_temperature": 0.1,
+  "budget_weight": 0.01,
+  "router_init_seed": 1701,
+  "second_router_init_seed": 1702,
+  "time_token_init_seed": 5701,
+  "reference_depth": 17,
+  "reference_bottleneck": 128,
+  "core_extension_base_depth": 22,
+  "core_extension_seed": 7701
+}

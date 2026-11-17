@@ -1,0 +1,14 @@
+{
+  "variant": "baseline",
+  "image_size": 512,
+  "patch_size": 16,
+  "width": 768,
+  "heads": 12,
+  "mlp_ratio": 2.6667,
+  "text_width": 1024,
+  "text_length": 256,
+  "text_depth": 2,
+  "block_depths": [17],
+  "patch_bottleneck": 128,
+  "budget_weight": 0.0
+}

@@ -1,0 +1,92 @@
+{
+  "description": "Final HiT-XL/16 (10/10/8/10/10) epoch-600 sampler: group guidance with a shifted time grid. Thresholds are calibrated for the epoch-600 EMA 0.9999 weights: the conditional prediction uses 1.2x the calibrated group count at every t, the unconditional one 0.5x for t >= 0.85 (stage-1 router only).",
+  "steps": 50,
+  "guidance": 2.6,
+  "interval": [
+    0.1,
+    1.0
+  ],
+  "time_shift": 1.7,
+  "group_guidance": {
+    "cond": [
+      [
+        0.0,
+        0.1,
+        0.9058777987957001,
+        null
+      ],
+      [
+        0.1,
+        0.2,
+        0.9078725427389145,
+        null
+      ],
+      [
+        0.2,
+        0.3,
+        0.9099719127019247,
+        null
+      ],
+      [
+        0.3,
+        0.4,
+        0.9130289283665743,
+        null
+      ],
+      [
+        0.4,
+        0.5,
+        0.9159530401229858,
+        null
+      ],
+      [
+        0.5,
+        0.6,
+        0.9204822778701782,
+        null
+      ],
+      [
+        0.6,
+        0.7,
+        0.9296736717224121,
+        null
+      ],
+      [
+        0.7,
+        0.8,
+        0.9439890384674072,
+        null
+      ],
+      [
+        0.8,
+        0.9,
+        0.9644635915756226,
+        null
+      ],
+      [
+        0.9,
+        1.01,
+        0.9895514249801637,
+        null
+      ]
+    ],
+    "uncond": [
+      [
+        0.85,
+        0.9,
+        0.815306822458903,
+        null
+      ],
+      [
+        0.9,
+        1.01,
+        0.7975938022136688,
+        null
+      ]
+    ]
+  },
+  "reference_fid50k": {
+    "official": 1.4778,
+    "imagenet_val": 2.7332
+  }
+}

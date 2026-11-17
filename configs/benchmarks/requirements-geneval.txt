@@ -1,0 +1,26 @@
+# GenEval scorer, isolated from training. Python 3.10; torch/torchvision are installed first
+# from the CUDA 13 index (see scripts/benchmarks/build_env.sh). mmcv-full 1.7.2 is built from
+# its PyPI sdist against that torch and installed without dependencies (headless OpenCV here).
+numpy==1.26.4
+pillow==12.3.0
+mmdet==2.28.2
+open-clip-torch==2.20.0
+pandas==1.5.3
+opencv-python-headless==4.10.0.84
+addict==2.4.0
+packaging==24.2
+pyyaml==6.0.2
+yapf==0.40.1
+terminaltables==3.1.10
+pycocotools==2.0.8
+matplotlib==3.9.2
+scipy==1.14.1
+six==1.16.0
+scikit-learn==1.5.2
+tqdm==4.67.1
+ftfy==6.3.1
+regex==2024.11.6
+huggingface-hub==0.35.3
+sentencepiece==0.2.0
+protobuf==3.20.3
+timm==1.0.16

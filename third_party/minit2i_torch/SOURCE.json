@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/Hope7Happiness/minit2i-torch",
+  "commit": "e54e15d7445d386e4c30663861c9d42288e87b66",
+  "files": {
+    "model.py": "e76c296a142dc8e12d965e87452f052165a9473fc1cffbba855c096776113607",
+    "LICENSE": "9f0f39cd914fe3ac90f735ba5cf7c85418900b2125c49928c956e087a1fd2aaa"
+  },
+  "modifications": "None; adaptations live in t2i/."
+}

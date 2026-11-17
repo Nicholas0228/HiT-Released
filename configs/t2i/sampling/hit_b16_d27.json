@@ -1,0 +1,19 @@
+{
+  "guidance": 6.5,
+  "steps": 100,
+  "a_min": 0.05,
+  "noise_std": 2.0,
+  "seed": 0,
+  "group_guidance": {
+    "cond": [0.30807870626449585, 0.2524682283401489],
+    "uncond": [0.24352747201919556, 0.24442464113235474]
+  },
+  "reference_scores": {
+    "geneval": 87.78,
+    "dpg": 85.33,
+    "prism": 58.62,
+    "corebench": 45.22,
+    "spatial_geneval": 52.68,
+    "average": 65.93
+  }
+}

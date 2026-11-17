@@ -1,0 +1,4 @@
+Metadata-Version: 2.1
+Name: minit2i-judge-runtime
+Version: 1.0
+Summary: vLLM general plugin for the MiniT2I VLM judges (scripts/benchmarks/judge_runtime)

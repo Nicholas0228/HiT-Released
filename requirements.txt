@@ -1,0 +1,15 @@
+# Install torch==2.5.1 and torchvision==0.20.1 from the appropriate CUDA index first.
+numpy==1.26.4
+scipy==1.14.1
+numba==0.61.2
+Pillow==12.3.0
+einops==0.8.1
+pytest==8.4.2
+# Optional online tracking: wandb==0.30.0
+# Text-to-image (FLAN-T5 captions, COCO FID, input download)
+transformers==4.46.3
+tokenizers==0.20.3
+sentencepiece==0.2.0
+protobuf==7.36.2
+clean-fid==0.1.35
+huggingface-hub==0.35.3

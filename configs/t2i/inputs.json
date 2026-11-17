@@ -1,0 +1,36 @@
+{
+  "bundle": {
+    "repository": "Nicholas0228/minit2i-frozen-inputs-v1",
+    "repo_type": "dataset",
+    "private": true,
+    "revision": "96b06cce24e73d302de2e274107aabbf5e94cbe2",
+    "index": "bundle.json",
+    "index_sha256": "94d06eb75bc06fbe684b29c2047deb120204d5bd2589ac1ba812038829ed4403"
+  },
+  "images": {
+    "repository": "pixparse/cc12m-wds",
+    "repo_type": "dataset",
+    "revision": "796118f2eabdb9984f23f7f15d1e74d388612fc6",
+    "shards": 2176,
+    "bytes": 1182794567680
+  },
+  "encoder": {
+    "repository": "google/flan-t5-large",
+    "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a"
+  },
+  "captions": {
+    "repository": "CaptionEmporium/conceptual-captions-cc12m-llavanext",
+    "revision": "1c24bdba3f81257082612654ba72fe18a83c7a37"
+  },
+  "coco": {
+    "repository": "sayakpaul/coco-30-val-2014",
+    "revision": "abdde3200f533ddae5bed2438057f1f7ea2d5131",
+    "count": 30000
+  },
+  "accepted_pairs": 10968532,
+  "sequence": {
+    "updates": 250000,
+    "global_batch": 1024,
+    "seed": 42
+  }
+}

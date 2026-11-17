@@ -1,0 +1,12 @@
+{
+  "attention_backend": "reference",
+  "compact_batching": "padded",
+  "routing_backend": "scipy",
+  "routing_workers": 1,
+  "pad_multiple": 16,
+  "routing_transfer": "legacy",
+  "routing_validation": "cpu",
+  "execution_backend": "native",
+  "compile": false,
+  "dtype": "float32"
+}

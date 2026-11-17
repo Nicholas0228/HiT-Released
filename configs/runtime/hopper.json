@@ -1,0 +1,13 @@
+{
+  "attention_backend": "sdpa",
+  "compact_batching": "packed",
+  "routing_backend": "gpu_exact",
+  "routing_workers": 8,
+  "pad_multiple": 256,
+  "routing_transfer": "packed",
+  "routing_validation": "gpu",
+  "execution_backend": "hopper",
+  "activation_memory_budget": 1.0,
+  "compile": true,
+  "dtype": "bfloat16"
+}
