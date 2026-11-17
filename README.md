@@ -13,7 +13,7 @@ Xiaoyu Wu¹ · Yifei Wang² · Weihang Guo² · Chen Wei² · Lydia E. Kavraki²
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Paper-coming_soon-b31b1b" alt="Paper (coming soon)">
+  <a href="HiT.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b" alt="Paper"></a>
   <a href="https://nicholas0228.github.io/blog/hit/"><img src="https://img.shields.io/badge/Project-Page-e8913a" alt="Project page"></a>
   <a href="https://huggingface.co/Nicholas0228/HiT"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Hugging_Face-Checkpoints-ffd21e" alt="Hugging Face checkpoints"></a>
   <img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="MIT license">
