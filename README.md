@@ -136,7 +136,8 @@ with HiT at its target group counts.
 
 MiniT2I-B/16 numbers are as reported by [MiniT2I](https://github.com/Hope7Happiness/minit2i-torch).
 HiT-B/16: [checkpoint](https://huggingface.co/Nicholas0228/HiT), [generation and scoring](docs/BENCHMARKS.md).
-It is fine-tuned for 40k updates after pretraining; the fine-tuning stage is not yet part of this repository.
+It is fine-tuned for 40k updates after pretraining; the code and three-source data recipe are in
+[FINETUNING.md](docs/FINETUNING.md).
 
 ## Quick start
 
@@ -194,8 +195,8 @@ ADM FID-5K every five epochs and FID-50K at epochs 20/40/60/80, with and without
 
 ### Text-to-image
 
-> **Not yet included:** the 40k-update fine-tuning (SFT40k) that follows pretraining and produced the
-> released text-to-image checkpoint. The commands below reproduce the 250k-update CC12M pretraining.
+The commands below run 250k-update CC12M pretraining. Continue with the
+[SFT40k guide](docs/FINETUNING.md) for the three-source mixture and 40k fine-tuning stage.
 
 The training data is MiniT2I's. [Nicholas0228/minit2i-frozen-inputs-v1](https://huggingface.co/datasets/Nicholas0228/minit2i-frozen-inputs-v1)
 holds the same data, frozen only to reproduce our training sequence (caption table, sample order and COCO
@@ -208,7 +209,7 @@ python scripts/fetch_t2i_inputs.py --output "$T2I_INPUTS" --token-file ~/.config
 # 2. Train HiT-B/16 (or configs/t2i/models/minit2i_b16.json for the dense baseline).
 torchrun --standalone --nproc-per-node=8 main_t2i.py \
   --model configs/t2i/models/hit_b16_d27.json \
-  --inputs "$T2I_INPUTS/inputs.json" --output "$RUN_DIR"
+  --inputs "$T2I_INPUTS/inputs.json" --output "$RUN_DIR" --microbatch 128
 
 # 3. Evaluate any saved checkpoint (COCO FID; any GPU count gives the same cohort and noise).
 torchrun --standalone --nproc-per-node=8 scripts/evaluate_t2i.py \
@@ -218,7 +219,8 @@ torchrun --standalone --nproc-per-node=8 scripts/evaluate_t2i.py \
 
 250k updates at global batch 1,024, LR 4e-4 after a 5k warmup, EMAs 0.99995 and 0.9995, COCO FID-10k
 every 10k updates and FID-30k at milestones. The HiT thresholds are already calibrated. Data order and
-noise are fixed per sample, so the run is the same on any GPU count. Add `--resume` to continue a run.
+noise are fixed per sample. Use 8 × 128 or 16 × 64 without accumulation to retain the full-batch
+HiT budget objective. Add `--resume` to continue a run.
 The [text-to-image guide](docs/T2I.md) has the full recipe, outputs and options.
 
 Both experiments are config-driven: architecture in `configs/*/models`, recipe in `configs/*/training`,
@@ -237,6 +239,7 @@ pinned [MiniT2I PyTorch model](third_party/minit2i_torch/SOURCE.json) for text-t
 | [scripts/evaluate_imagenet.py](scripts/evaluate_imagenet.py), [configs/sampling](configs/sampling) | Sample and score a saved ImageNet checkpoint |
 | [scripts/benchmarks](scripts/benchmarks), [Benchmarks](docs/BENCHMARKS.md) | Generate and score GenEval, DPG, PRISM, CoRe and Spatial |
 | [Recipe](docs/RECIPE.md), [Text-to-image](docs/T2I.md) | Model sizes, training, recovery, calibration |
+| [Fine-tuning](docs/FINETUNING.md) | SFT40k training and the BLIP3o / DALL-E 3 / ShareGPT-4o mixture |
 
 ## License
 

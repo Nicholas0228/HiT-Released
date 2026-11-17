@@ -97,16 +97,20 @@ COCO contexts from the public sources are not part of this repository.
 ```bash
 torchrun --standalone --nproc-per-node=8 main_t2i.py \
   --model configs/t2i/models/hit_b16_d27.json \
-  --inputs "$T2I_INPUTS/inputs.json" --output "$RUN_DIR"
+  --inputs "$T2I_INPUTS/inputs.json" --output "$RUN_DIR" --microbatch 128
 ```
 
 Use `configs/t2i/models/minit2i_b16.json` for the dense baseline. Add `--resume`
 to continue, `--max-updates N` for a checkpointed stop, `--microbatch N` if memory
-is short (64 per GPU is the reference), and `--wandb-project/--wandb-entity` for
+is short, and `--wandb-project/--wandb-entity` for
 online logging. `SIGUSR1` or `SIGTERM` stops at the next update with a verified
 checkpoint. Outputs: `metrics.jsonl`, `configuration.json`, verified rolling
 recovery states and permanent `checkpoint-uXXXXXXX.pt` every 10k updates, and
 `evaluation/uXXXXXXX-ema*/` with FID results and sample images.
+
+Use 8 × 128 or 16 × 64 without accumulation for the paper's full-batch HiT
+budget objective. Smaller microbatches preserve the sample sequence but change
+the budget reduction population.
 
 Runtime profiles: `configs/t2i/runtime/cuda.json` (default; compiled MLPs and
 readers), `eager.json` (no compilation) and `reference.json` (CPU tests).
@@ -134,8 +138,10 @@ torchrun --standalone --nproc-per-node=4 scripts/calibrate_t2i.py \
 It writes `model.json` with the new thresholds. Any GPU count gives the same
 cohort, noise and batches.
 
-## Not included
+## Fine-tuning
 
-The 40k-update fine-tuning stage is not part of this code; the released fine-tuned checkpoint and its
-benchmark evaluation are in [BENCHMARKS.md](BENCHMARKS.md). The FA4/Blackwell runtime is omitted;
-`cuda.json` uses PyTorch SDPA and varlen FlashAttention.
+Continue the full 250k checkpoint for 40k updates with the three-source data recipe
+in [FINETUNING.md](FINETUNING.md). The released 290k EMA checkpoint can be evaluated
+directly with [BENCHMARKS.md](BENCHMARKS.md).
+
+The FA4/Blackwell runtime is omitted; `cuda.json` uses PyTorch SDPA and varlen FlashAttention.
