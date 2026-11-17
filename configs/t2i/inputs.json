@@ -2,7 +2,7 @@
   "bundle": {
     "repository": "Nicholas0228/minit2i-frozen-inputs-v1",
     "repo_type": "dataset",
-    "private": true,
+    "private": false,
     "revision": "96b06cce24e73d302de2e274107aabbf5e94cbe2",
     "index": "bundle.json",
     "index_sha256": "94d06eb75bc06fbe684b29c2047deb120204d5bd2589ac1ba812038829ed4403"

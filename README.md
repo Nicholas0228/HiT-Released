@@ -241,7 +241,9 @@ pinned [MiniT2I PyTorch model](third_party/minit2i_torch/SOURCE.json) for text-t
 
 ## License
 
-MIT for this code. Vendored components keep their own licenses:
+MIT for this code and the [checkpoints](https://huggingface.co/Nicholas0228/HiT). The frozen text-to-image inputs
+([dataset](https://huggingface.co/datasets/Nicholas0228/minit2i-frozen-inputs-v1)) are CC BY-SA 4.0, as their
+captions are. Vendored components keep their own licenses:
 [MiniT2I](third_party/minit2i_torch/LICENSE) (MIT) and SciPy-derived linkage
 ([BSD-3](LICENSES/scipy-bsd.txt)). The figures in `assets/readme` come from the
 [project page](https://nicholas0228.github.io/blog/hit/).
