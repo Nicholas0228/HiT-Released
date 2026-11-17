@@ -125,8 +125,7 @@ torchrun --standalone --nproc-per-node=8 scripts/evaluate_t2i.py \
 
 `--guidances` and `--steps` change the sampler; `--save-images` keeps every PNG.
 On one H200 the dense model samples 0.64 s per image at CFG 2 and 0.33 s at CFG 1,
-so an FID-30k at both guidances takes about 1 h on 8 GPUs
-([measured](validation/t2i/coco-fid10k-minit2i-b16-u500.json)).
+so an FID-30k at both guidances takes about 1 h on 8 GPUs.
 
 **5. Recalibrate (only for a changed architecture):**
 
