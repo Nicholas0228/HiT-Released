@@ -64,7 +64,8 @@ Group memberships and counts adapt to each image and diffusion timestep.</sub></
 - **Test-time image grouping.** Groups can follow object parts, merge background regions or connect
   distant patches.
 - **A learned router.** A complete average-linkage tree over learned query/key similarities is cut at a
-  calibrated threshold. Soft pooling and ungrouping keep everything differentiable. No segmentation labels.
+  calibrated threshold. Gradients reach the affinity projections through soft pooling and ungrouping
+  weights; hard group assignments stay fixed during backpropagation. No segmentation labels are needed.
 - **A budget, not a quota.** A small budget loss keeps the average compression near 2× per level;
   individual images use more or fewer groups.
 
