@@ -246,11 +246,11 @@ pinned [MiniT2I PyTorch model](third_party/minit2i_torch/SOURCE.json) for text-t
 If you find our work helpful, we would appreciate it if you could cite our paper:
 
 ```bibtex
-@misc{wu2026hit,
-  title  = {Hierarchical Diffusion Transformer for End-to-End Image Generation},
-  author = {Wu, Xiaoyu and Wang, Yifei and Guo, Weihang and Wei, Chen and Kavraki, Lydia E. and
-            Mireshghallah, Niloofar and Wu, Zhiwei Steven},
-  year   = {2026}
+@article{wu2026hierarchical,
+  title={Hierarchical Diffusion Transformer for End-to-End Image Generation},
+  author={Wu, Xiaoyu and Wang, Yifei and Guo, Weihang and Wei, Chen and Kavraki, Lydia E and Mireshghallah, Niloofar and Wu, Steven},
+  journal={arXiv preprint arXiv:2611.22962},
+  year={2026}
 }
 ```
 
